@@ -1,0 +1,45 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'java-library'
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation "com.android.tools.build:gradle:$android_tools_version"
+    implementation "com.google.guava:guava:$guava_version"
+    //ASM相关依赖
+    implementation "org.ow2.asm:asm:$asm_version"
+    implementation "org.ow2.asm:asm-commons:$asm_version"
+    implementation 'io.github.singlewolf:lancet-base:1.0.1'
+}
+
+//发布到本地repo
+//group='com.walker.lancet'
+//version='1.0.1'
+//
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            //本地的Maven地址设置
+//            repository(url: uri('../repo/walker_lancet_repo'))
+//        }
+//    }
+//}
+
+task createClasspathManifest {
+    def outputDir = file("$buildDir/$name")
+
+    inputs.files sourceSets.main.runtimeClasspath
+    outputs.dir outputDir
+
+    doLast {
+        outputDir.mkdirs()
+        file("$outputDir/plugin-classpath.txt").text = sourceSets.main.runtimeClasspath.join("\n")
+    }
+}
+
+dependencies {
+    testRuntime files(createClasspathManifest)
+}
+
+//apply from: "publishConfig.gradle"

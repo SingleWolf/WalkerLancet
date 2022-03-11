@@ -1,0 +1,4 @@
+include ':app'
+include ':lancet-base'
+include ':lancet-plugin'
+rootProject.name = "WalkerLancet"

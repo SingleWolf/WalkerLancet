@@ -1,0 +1,26 @@
+*.iml
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+.idea/
+local.properties
+# Generated files
+bin/
+gen/
+# Gradle files
+/.gradle/
+gradle
+/lancet-base/publishConfig.gradle
+/lancet-plugin/publishConfig.gradle
+/gradle.properties
+/maven.properties
+/local.properties
